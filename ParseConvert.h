@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 #include <algorithm>
+#include <regex>
 #include <iostream>//delete
 
 class ParseConvert

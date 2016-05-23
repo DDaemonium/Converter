@@ -61,7 +61,7 @@ bool ParseConvert::LoadOBJ(const std::wstring &filename) {
 			if (buffer == L"#") {
 				getline(input, buffer);
 			}
-			else if (buffer == L"g") {
+			else if (buffer == L"g") {//доделать
 				this->meshStartPosition.push_back(indecis.size());
 			}
 			else if (buffer == L"mtllib") { //check mtllib
@@ -118,7 +118,7 @@ bool ParseConvert::LoadOBJ(const std::wstring &filename) {
 			}
 		}
 		if (!this->LoadMTL()) {
-			std::cerr << "Не удалось загрузить MTL";
+			std::cerr << "MTL wasn't loaded";
 		}
 		return true;
 	}
