@@ -45,6 +45,28 @@ struct ParseConvert::Materials {
 		hasNormMap(false){}
 };
 
+void ParseConvert::SplitFacesOBJ(std::wstring &data, int *bufferArray) {
+	auto first_position = data.find_first_of('/');
+	auto second_position = data.find_last_of('/');
+	bufferArray[0] = stoi(data.substr(0, first_position));
+	if (first_position == std::wstring::npos) {
+		bufferArray[1] = -1;
+		bufferArray[2] = -1;
+	}
+	else if (second_position != first_position && second_position != (first_position + 1)) {
+		bufferArray[1] = stoi(data.substr(first_position + 1, second_position - first_position - 1));
+		bufferArray[2] = stoi(data.substr(second_position + 1, std::wstring::npos));
+	}
+	else if (second_position != first_position && second_position == (first_position + 1)) {
+		bufferArray[1] = stoi(data.substr(second_position + 1, std::wstring::npos));
+		bufferArray[2] = -1;
+	}
+	else {
+		bufferArray[1] = -1;
+		bufferArray[2] = stoi(data.substr(second_position + 1, std::wstring::npos));
+	}
+}
+
 ParseConvert::ParseConvert()
 {
 }

@@ -6,7 +6,6 @@
 #include <map>
 #include <memory>
 #include <algorithm>
-#include <regex>
 #include <iostream>//delete
 
 class ParseConvert
@@ -21,6 +20,7 @@ private:
 	std::vector<XMFLOAT3> verteñis, normals, textÑoords;
 	std::vector<Vertex> vertex;
 	std::vector<int> meshStartPosition, indecis;
+	void SplitFacesOBJ(std::wstring &data, int *bufferArray);
 public:
 	ParseConvert();
 	bool LoadOBJ(const std::wstring &filename);
